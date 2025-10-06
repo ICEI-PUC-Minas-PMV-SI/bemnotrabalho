@@ -1,0 +1,625 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Paleta de cores ajustada para o tom de verde do logo */
+  --bem-verde-neutro: #1f5f5c;
+  --bem-verde-suave: #2d6a4f;
+  --bem-verde-claro: #a8d5ba;
+  --bem-rosa-destaque: #e8b4c8;
+  --bem-rosa-medio: #d4a5b8;
+  --bem-rosa-suave: #f0d7e1;
+  --bem-rosa-claro: #f7e8ed;
+  --bem-rosa-muito-claro: #fdf4f7;
+  --bem-cinza-escuro: #374151;
+  --bem-cinza-medio: #6b7280;
+  --bem-cinza-claro: #f9fafb;
+  --bem-branco: #ffffff;
+  --bem-creme-rosa: #fef9fb;
+  
+  --radius: 0.625rem;
+  --background: var(--bem-creme-rosa);
+  --foreground: var(--bem-verde-neutro);
+  --card: var(--bem-branco);
+  --card-foreground: var(--bem-verde-neutro);
+  --popover: var(--bem-branco);
+  --popover-foreground: var(--bem-verde-neutro);
+  --primary: var(--bem-verde-neutro);
+  --primary-foreground: var(--bem-branco);
+  --secondary: var(--bem-rosa-suave);
+  --secondary-foreground: var(--bem-verde-neutro);
+  --muted: var(--bem-rosa-claro);
+  --muted-foreground: var(--bem-verde-suave);
+  --accent: var(--bem-rosa-destaque);
+  --accent-foreground: var(--bem-branco);
+  --destructive: #dc2626;
+  --border: var(--bem-rosa-medio);
+  --input: var(--bem-branco);
+  --ring: var(--bem-verde-suave);
+  --chart-1: var(--bem-verde-neutro);
+  --chart-2: var(--bem-rosa-destaque);
+  --chart-3: var(--bem-verde-suave);
+  --chart-4: var(--bem-rosa-medio);
+  --chart-5: var(--bem-verde-claro);
+  --sidebar: var(--bem-branco);
+  --sidebar-foreground: var(--bem-verde-neutro);
+  --sidebar-primary: var(--bem-verde-neutro);
+  --sidebar-primary-foreground: var(--bem-branco);
+  --sidebar-accent: var(--bem-rosa-suave);
+  --sidebar-accent-foreground: var(--bem-verde-neutro);
+  --sidebar-border: var(--bem-rosa-medio);
+  --sidebar-ring: var(--bem-verde-suave);
+}
+
+.dark {
+  --background: var(--bem-cinza-escuro);
+  --foreground: var(--bem-rosa-claro);
+  --card: var(--bem-verde-neutro);
+  --card-foreground: var(--bem-branco);
+  --popover: var(--bem-verde-neutro);
+  --popover-foreground: var(--bem-branco);
+  --primary: var(--bem-rosa-destaque);
+  --primary-foreground: var(--bem-branco);
+  --secondary: var(--bem-verde-claro);
+  --secondary-foreground: var(--bem-verde-neutro);
+  --muted: var(--bem-verde-suave);
+  --muted-foreground: var(--bem-verde-claro);
+  --accent: var(--bem-rosa-suave);
+  --accent-foreground: var(--bem-branco);
+  --destructive: #ef4444;
+  --border: var(--bem-verde-claro);
+  --input: var(--bem-verde-suave);
+  --ring: var(--bem-rosa-destaque);
+  --chart-1: var(--bem-rosa-destaque);
+  --chart-2: var(--bem-verde-claro);
+  --chart-3: var(--bem-rosa-suave);
+  --chart-4: var(--bem-verde-suave);
+  --chart-5: var(--bem-rosa-claro);
+  --sidebar: var(--bem-verde-suave);
+  --sidebar-foreground: var(--bem-branco);
+  --sidebar-primary: var(--bem-rosa-destaque);
+  --sidebar-primary-foreground: var(--bem-branco);
+  --sidebar-accent: var(--bem-verde-claro);
+  --sidebar-accent-foreground: var(--bem-verde-neutro);
+  --sidebar-border: var(--bem-verde-claro);
+  --sidebar-ring: var(--bem-rosa-destaque);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+}
+
+/* Estilos específicos para harmonização */
+.hero-section {
+  background: linear-gradient(135deg, var(--bem-rosa-suave) 0%, var(--bem-rosa-claro) 50%, var(--bem-creme-rosa) 100%);
+  color: var(--bem-verde-neutro);
+}
+
+.text-primary {
+  color: var(--bem-verde-neutro) !important;
+}
+
+.text-secondary {
+  color: var(--bem-verde-suave) !important;
+}
+
+.bg-primary {
+  background-color: var(--bem-verde-neutro) !important;
+}
+
+.bg-secondary {
+  background-color: var(--bem-rosa-suave) !important;
+}
+
+.btn-primary {
+  background-color: var(--bem-verde-neutro);
+  color: var(--bem-branco);
+  border: 2px solid var(--bem-verde-neutro);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--bem-verde-suave);
+  border-color: var(--bem-verde-suave);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 93, 90, 0.2);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--bem-verde-neutro);
+  border: 2px solid var(--bem-verde-neutro);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bem-verde-neutro);
+  color: var(--bem-branco);
+}
+
+.navbar {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 232, 237, 0.95) 100%);
+  border-bottom: 1px solid var(--bem-rosa-medio);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+  color: var(--bem-verde-neutro) !important;
+}
+
+.navbar-nav .nav-link {
+  color: var(--bem-verde-neutro) !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--bem-verde-suave) !important;
+}
+
+.card {
+  background: linear-gradient(135deg, var(--bem-branco) 0%, var(--bem-rosa-muito-claro) 100%);
+  border: 1px solid var(--bem-rosa-medio);
+  box-shadow: 0 2px 8px rgba(212, 165, 184, 0.15);
+}
+
+.card-header {
+  background: linear-gradient(135deg, var(--bem-rosa-suave) 0%, var(--bem-rosa-claro) 100%);
+  color: var(--bem-verde-neutro);
+}
+
+.form-control {
+  border: 2px solid var(--bem-rosa-medio);
+  color: var(--bem-verde-neutro);
+  background: linear-gradient(135deg, var(--bem-branco) 0%, var(--bem-rosa-muito-claro) 100%);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--bem-verde-suave);
+  box-shadow: 0 0 0 0.2rem rgba(74, 93, 90, 0.15);
+}
+
+.footer {
+  background: linear-gradient(135deg, var(--bem-verde-neutro) 0%, var(--bem-verde-suave) 100%);
+  color: var(--bem-branco);
+}
+
+.section-bg-rosa {
+  background: linear-gradient(135deg, var(--bem-rosa-suave) 0%, var(--bem-rosa-claro) 50%, var(--bem-rosa-muito-claro) 100%);
+}
+
+.section-bg-verde {
+  background: linear-gradient(135deg, var(--bem-verde-claro) 0%, var(--bem-rosa-claro) 50%, var(--bem-rosa-muito-claro) 100%);
+}
+
+.section-bg-neutro {
+  background: linear-gradient(135deg, var(--bem-rosa-claro) 0%, var(--bem-creme-rosa) 100%);
+}
+
+.section-bg-rosa-forte {
+  background: linear-gradient(135deg, var(--bem-rosa-destaque) 0%, var(--bem-rosa-suave) 50%, var(--bem-rosa-claro) 100%);
+}
+
+/* Animações suaves */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estilos específicos para o logo */
+.logo-bem-trabalho {
+  transition: all 0.3s ease;
+  filter: brightness(1.05) saturate(1.05);
+  border-radius: 50%; /* Para logos circulares */
+}
+
+.logo-bem-trabalho:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.1);
+  box-shadow: 0 6px 20px rgba(212, 165, 184, 0.2);
+}
+
+/* Estilos para ícones */
+.icon-verde {
+  color: var(--bem-verde-neutro);
+}
+
+.icon-rosa {
+  color: var(--bem-rosa-destaque);
+}
+
+/* Estilos para depoimentos */
+.testimonial-card {
+  background: linear-gradient(145deg, var(--bem-branco) 0%, var(--bem-rosa-suave) 50%, var(--bem-rosa-claro) 100%);
+  border-left: 4px solid var(--bem-verde-neutro);
+  box-shadow: 0 4px 12px rgba(212, 165, 184, 0.2);
+}
+
+/* Estilos para seções de serviços */
+.service-card {
+  background: linear-gradient(135deg, var(--bem-branco) 0%, var(--bem-rosa-muito-claro) 100%);
+  border: 2px solid var(--bem-rosa-medio);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(212, 165, 184, 0.1);
+}
+
+.service-card:hover {
+  border-color: var(--bem-verde-suave);
+  box-shadow: 0 8px 25px rgba(212, 165, 184, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Estilos para botões de navegação */
+.nav-button {
+  background: linear-gradient(135deg, var(--bem-verde-neutro) 0%, var(--bem-verde-suave) 100%);
+  color: var(--bem-branco);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background: linear-gradient(135deg, var(--bem-verde-suave) 0%, var(--bem-verde-neutro) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 93, 90, 0.2);
+}
+
+/* Estilos para formulários */
+.form-section {
+  background: linear-gradient(135deg, var(--bem-branco) 0%, var(--bem-rosa-suave) 50%, var(--bem-rosa-claro) 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid var(--bem-rosa-medio);
+  box-shadow: 0 4px 16px rgba(212, 165, 184, 0.15);
+}
+
+/* Estilos para badges e elementos de destaque */
+.badge-verde {
+  background-color: var(--bem-verde-claro);
+  color: var(--bem-verde-neutro);
+  border: 1px solid var(--bem-verde-suave);
+}
+
+.badge-rosa {
+  background-color: var(--bem-rosa-suave);
+  color: var(--bem-verde-neutro);
+  border: 1px solid var(--bem-rosa-medio);
+}
+
+/* Estilos para elementos de destaque suaves */
+.highlight-verde {
+  background: linear-gradient(135deg, var(--bem-verde-claro) 0%, var(--bem-rosa-claro) 50%, rgba(212, 228, 225, 0.5) 100%);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.highlight-rosa {
+  background: linear-gradient(135deg, var(--bem-rosa-suave) 0%, var(--bem-rosa-claro) 50%, rgba(245, 241, 242, 0.5) 100%);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+  
+  .form-section {
+    padding: 1.5rem;
+  }
+  
+  .service-card {
+    margin-bottom: 1rem;
+  }
+  
+  .logo-bem-trabalho {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+/* Estilos para elementos interativos */
+.interactive-element {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 165, 184, 0.2);
+}
+
+/* Estilos para separadores sutis */
+.divider-rosa {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--bem-rosa-destaque) 50%, transparent 100%);
+  margin: 2rem 0;
+}
+
+.divider-verde {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--bem-verde-claro) 50%, transparent 100%);
+  margin: 2rem 0;
+}
+
+/* Estilos específicos para modais */
+.modal-overlay {
+  background: rgba(212, 165, 184, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: linear-gradient(135deg, var(--bem-branco) 0%, var(--bem-rosa-muito-claro) 100%);
+  border: 1px solid var(--bem-rosa-medio);
+  box-shadow: 0 10px 40px rgba(212, 165, 184, 0.3);
+}
+
+/* Estilos para seções alternadas */
+.section-alternada-rosa {
+  background: linear-gradient(135deg, var(--bem-rosa-suave) 0%, var(--bem-rosa-claro) 50%, var(--bem-creme-rosa) 100%);
+}
+
+.section-alternada-verde-rosa {
+  background: linear-gradient(135deg, var(--bem-verde-claro) 0%, var(--bem-rosa-claro) 50%, var(--bem-creme-rosa) 100%);
+}
+
+/* Estilos para elementos de foco */
+.focus-rosa {
+  background: linear-gradient(135deg, var(--bem-rosa-suave) 0%, var(--bem-rosa-claro) 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid var(--bem-rosa-destaque);
+}
+
+/* Estilos específicos para destacar o logo no header */
+.navbar .logo-bem-trabalho {
+  box-shadow: 0 4px 12px rgba(212, 165, 184, 0.3);
+  border: 2px solid var(--bem-rosa-destaque);
+}
+
+/* Estilos para o logo principal na hero section */
+.hero-section .logo-bem-trabalho {
+  box-shadow: 0 12px 30px rgba(212, 165, 184, 0.4);
+  border: 4px solid var(--bem-branco);
+  position: relative;
+}
+
+.hero-section .logo-bem-trabalho::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 2px solid var(--bem-rosa-destaque);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse-logo 2s infinite;
+}
+
+@keyframes pulse-logo {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+/* Destaque adicional para o logo no footer */
+.footer .logo-bem-trabalho {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animações para o fórum */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Estilos para frases motivacionais */
+.frases-motivacionais {
+  background: linear-gradient(135deg, var(--bem-rosa-suave) 0%, var(--bem-verde-claro) 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(212, 165, 184, 0.2);
+  transition: all 0.3s ease;
+}
+
+.frases-motivacionais:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(212, 165, 184, 0.3);
+}
+
+/* Estilos para posts do fórum com motion */
+.forum-post {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.forum-post:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(212, 165, 184, 0.25);
+}
+
+/* Estilos para respostas do fórum */
+.forum-response {
+  background: linear-gradient(135deg, var(--bem-rosa-muito-claro) 0%, var(--bem-verde-claro) 100%);
+  border-left: 4px solid var(--bem-verde-neutro);
+  transition: all 0.3s ease;
+}
+
+.forum-response:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(31, 95, 92, 0.15);
+}
+
+/* Botões do fórum com animações */
+.forum-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.forum-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.forum-button:hover::before {
+  left: 100%;
+}
+
+.forum-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(31, 95, 92, 0.3);
+}
+
+/* Indicadores de frases motivacionais */
+.frase-indicator {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.frase-indicator:hover {
+  transform: scale(1.2);
+}
+
+.frase-indicator.active {
+  background-color: var(--bem-verde-neutro);
+  transform: scale(1.3);
+}
+
+/* Animação de entrada para elementos do fórum */
+.forum-enter {
+  animation: slideInFromBottom 0.6s ease-out;
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efeito de pulsação para elementos ativos */
+.pulse-effect {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(31, 95, 92, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(31, 95, 92, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(31, 95, 92, 0);
+  }
+}
+
+/* Transições suaves para expansão de conteúdo */
+.expand-content {
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* Efeito de shimmer para loading */
+.shimmer {
+  background: linear-gradient(90deg, var(--bem-rosa-claro) 25%, var(--bem-rosa-suave) 50%, var(--bem-rosa-claro) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
